@@ -164,7 +164,7 @@ cron.schedule('* * * * *', async () => {
         badge: '/icons/icon-192.png',
         tag: 'cap-daily',
         renotify: true,
-        data: { url: '/' }
+        // data: { url: '/Cap/' }
       });
       console.log(`  ✅ ${entry.subscription.endpoint.slice(-20)}…`);
     } catch (err) {

@@ -56,6 +56,7 @@ app.post('/subscribe', (req, res) => {
   const { subscription, notifyAt } = req.body;
   if (!subscription?.endpoint || !notifyAt || !/^\d{2}:\d{2}$/.test(notifyAt)) {
     return res.status(400).json({ error: 'Données invalides' });
+	console.log(`Données invalides`);
   }
 
   let subs = loadSubs();
@@ -83,11 +84,15 @@ app.post('/update-time', (req, res) => {
   const { endpoint, notifyAt } = req.body;
   if (!endpoint || !notifyAt || !/^\d{2}:\d{2}$/.test(notifyAt)) {
     return res.status(400).json({ error: 'Données invalides' });
+	console.log(`Données invalides`);
   }
 
   let subs = loadSubs();
   const idx = subs.findIndex(s => s.subscription.endpoint === endpoint);
-  if (idx < 0) return res.status(404).json({ error: 'Abonné introuvable' });
+  if (idx < 0)  { 
+	return res.status(404).json({ error: 'Abonné introuvable' });
+	console.log(`Abonné introuvable`);
+	}
 
   subs[idx].notifyAt = notifyAt;
   subs[idx].updatedAt = new Date().toISOString();

@@ -135,12 +135,13 @@ async function sendNotification(subscription, payload) {
 
 // ─── Cron — toutes les minutes ────────────────────────────────────────────────
 cron.schedule('* * * * *', async () => {
-  const nowStr = new Date().toLocaleTimeString('fr-FR', {
+  const nowStr = new Date().toLocaleTimeString('en-GB', {
     timeZone: 'Europe/Paris',
     hour: '2-digit',
     minute: '2-digit',
     hour12: false
   });
+  console.log('CRON tick —', nowStr);
 
   let subs = loadSubs();
   const targets = subs.filter(s => s.notifyAt === nowStr);

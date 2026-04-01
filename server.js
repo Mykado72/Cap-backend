@@ -146,8 +146,7 @@ cron.schedule('* * * * *', async () => {
     minute: '2-digit',
     hour12: false
   });
-  console.log('CRON tick —', nowStr);
-
+  
   let subs = loadSubs();
   const targets = subs.filter(s => s.notifyAt === nowStr);
   if (targets.length === 0) return;
